@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Thermostat</title>
+  <script src="../src/Thermostat.js"></script>
+
+</head>
+
+<body>
+  <script src="jquery-3.2.1.js"></script>
+  <script>
+  $( document ).ready(function() {
+    var thermostat = new Thermostat
+
+    $( "#currenttemp" ).click(function( event ) {
+      event.preventDefault()
+      alert( thermostat.temperature );
+    });
+
+    $( "#psmon" ).click(function( event ) {
+      event.preventDefault()
+      thermostat.powerSavingModeOn()
+      alert( thermostat.powerSavingMode );
+    });
+
+    $( "#psmoff" ).click(function( event ) {
+      event.preventDefault()
+      thermostat.powerSavingModeOff()
+      alert( thermostat.powerSavingMode );
+    });
+
+    $( "#energyusage" ).click(function( event ) {
+      event.preventDefault()
+      alert( thermostat.energyUsage() );
+    });
+
+    $( "#reset" ).click(function( event ) {
+      event.preventDefault()
+      thermostat.reset()
+      alert( "Temperature reset" );
+    });
+
+    $( "#up" ).click(function( event ) {
+      event.preventDefault()
+      thermostat.up(1)
+      alert( thermostat.temperature );
+    });
+
+    $( "#down" ).click(function( event ) {
+      event.preventDefault()
+      thermostat.down(1)
+      alert( thermostat.temperature );
+    });
+
+  });
+  </script>
+  <h1> Thermostat </h1>
+
+  <form>
+    <input type="submit" id="currenttemp" name="currenttemp" value="Current temperature">
+    <br>
+    <input type="submit" id= "up" name="up" value="UP">
+    <br>
+    <input type="submit" id="down" name="down" value ="DOWN">
+    <br>
+    <input type="submit" id="psmon" name="psmon" value="Power Saving Mode on">
+    <br>
+    <input type="submit" id = "psmoff" name="psmoff" value="Power Saving Mode off">
+    <br>
+    <input type="submit" id="energyusage" name="displayenergyusage" value="Display energy usage">
+    <br>
+    <input type="submit" id="reset" name="reset" value="Reset">
+    <br>
+  </form>
+
+
+
+
+</body>
+</html>
