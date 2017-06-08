@@ -3,58 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Thermostat</title>
+  <script src="jquery-3.2.1.js"></script>
   <script src="../src/Thermostat.js"></script>
+  <script src="../src/jQueryInterface.js"></script>
+
 
 </head>
 
 <body>
-  <script src="jquery-3.2.1.js"></script>
-  <script>
-  $( document ).ready(function() {
-    var thermostat = new Thermostat
 
-    $( "#currenttemp" ).click(function( event ) {
-      event.preventDefault()
-      alert( thermostat.temperature );
-    });
-
-    $( "#psmon" ).click(function( event ) {
-      event.preventDefault()
-      thermostat.powerSavingModeOn()
-      alert( thermostat.powerSavingMode );
-    });
-
-    $( "#psmoff" ).click(function( event ) {
-      event.preventDefault()
-      thermostat.powerSavingModeOff()
-      alert( thermostat.powerSavingMode );
-    });
-
-    $( "#energyusage" ).click(function( event ) {
-      event.preventDefault()
-      alert( thermostat.energyUsage() );
-    });
-
-    $( "#reset" ).click(function( event ) {
-      event.preventDefault()
-      thermostat.reset()
-      alert( "Temperature reset" );
-    });
-
-    $( "#up" ).click(function( event ) {
-      event.preventDefault()
-      thermostat.up(1)
-      alert( thermostat.temperature );
-    });
-
-    $( "#down" ).click(function( event ) {
-      event.preventDefault()
-      thermostat.down(1)
-      alert( thermostat.temperature );
-    });
-
-  });
-  </script>
   <h1> Thermostat </h1>
 
   <form>
