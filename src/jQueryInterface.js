@@ -11,7 +11,29 @@ var energyColorDisplay = function() {
   };
 };
 
+
 $( document ).ready(function() {
+
+  $( "#citySearch" ).submit(function(event) {
+    event.preventDefault();
+    console.log($("#searchText").val());
+    searchTerm = $("#searchText").val();
+    url = "http://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&APPID=01dcdbda41e274135f151befa25ccaf0";
+    $.get(url, function(response) {
+      $( "#cityTemp" ).text(searchTerm + "  " + (response.main.temp - 273.15).toFixed(2) + " °C");
+    });
+  });
+
+  $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=01dcdbda41e274135f151befa25ccaf0', function(response) {
+    apiData2 = response;
+    $( "#cityTemp" ).text("London, " + (response.main.temp - 273.15).toFixed(2) + " °C");
+  });
+
+  // $("#citySearch").submit(function (){
+  //   console.log($('#citySearch :input'));
+  // });
+
+
 
   $( "#tempDisplay" ).text(thermostat.temperature);
   $( "#powerSaving" ).text("Power Saving: " + thermostat.powerSavingModeString());

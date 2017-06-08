@@ -15,11 +15,18 @@
 
 <body>
 
+
+  <h3>search for your city</h3>
+  <form id="citySearch">
+    <input id="searchText" type="text" name="search" placeholder="Search...">
+    <input type="submit" name="submit" value="Submit">
+  </form>
+  <h1> Temperature in <span id="cityTemp"></span></h1>
   <h1> Thermostat </h1>
   <h1 id="tempDisplay"> Current Temperature </h1><h1 id="degrees"> degrees C</h1>
   <h3 id="powerSaving"> powerSavingMode On or Off</h3>
   <h3 id="EnergyUsage"> Current Energy Usage </h3>
-  <form>
+    <form>
     <input type="submit" id= "up" name="up" value="UP">
     <br>
     <input type="submit" id="down" name="down" value ="DOWN">
@@ -33,6 +40,8 @@
     <input type="submit" id="reset" name="reset" value="Reset">
     <br>
   </form>
+  <h4>The API respond:</h4>
+  <p id="api"> Test </p>
 
 
 
