@@ -6,6 +6,11 @@
   <script src="jquery-3.2.1.js"></script>
   <script src="../src/Thermostat.js"></script>
   <script src="../src/jQueryInterface.js"></script>
+  <style media="screen">
+    #degrees {
+      display: inline;
+    }
+  </style>
 
 
 </head>
@@ -13,10 +18,10 @@
 <body>
 
   <h1> Thermostat </h1>
-
+  <h1 id="tempDisplay"> Current Temperature </h1><h1 id="degrees"> degrees C</h1>
+  <h3 id="powerSaving"> powerSavingMode On or Off</h3>
+  <h3 id="EnergyUsage"> Current Energy Usage </h3>
   <form>
-    <input type="submit" id="currenttemp" name="currenttemp" value="Current temperature">
-    <br>
     <input type="submit" id= "up" name="up" value="UP">
     <br>
     <input type="submit" id="down" name="down" value ="DOWN">

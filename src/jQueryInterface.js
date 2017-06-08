@@ -2,21 +2,19 @@ var thermostat = new Thermostat
 
 $( document ).ready(function() {
 
-  $( "#currenttemp" ).click(function( event ) {
-    event.preventDefault()
-    alert( thermostat.temperature );
-  });
+  $( "#tempDisplay" ).text(thermostat.temperature);
+  $( "#powerSaving" ).text("Power Saving: " + thermostat.powerSavingModeString());
 
   $( "#psmon" ).click(function( event ) {
     event.preventDefault()
     thermostat.powerSavingModeOn()
-    alert( thermostat.powerSavingMode );
+    $( "#powerSaving" ).text("Power Saving: " + thermostat.powerSavingModeString());
   });
 
   $( "#psmoff" ).click(function( event ) {
     event.preventDefault()
     thermostat.powerSavingModeOff()
-    alert( thermostat.powerSavingMode );
+    $( "#powerSaving" ).text("Power Saving: " + thermostat.powerSavingModeString());
   });
 
   $( "#energyusage" ).click(function( event ) {
@@ -27,19 +25,19 @@ $( document ).ready(function() {
   $( "#reset" ).click(function( event ) {
     event.preventDefault()
     thermostat.reset()
-    alert( "Temperature reset" );
+    $( "#tempDisplay" ).text(thermostat.temperature)
   });
 
   $( "#up" ).click(function( event ) {
     event.preventDefault()
     thermostat.up(1)
-    alert( thermostat.temperature );
+    $( "#tempDisplay" ).text(thermostat.temperature)
   });
 
   $( "#down" ).click(function( event ) {
     event.preventDefault()
     thermostat.down(1)
-    alert( thermostat.temperature );
+    $( "#tempDisplay" ).text(thermostat.temperature)
   });
 
 });

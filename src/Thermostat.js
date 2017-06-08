@@ -1,19 +1,22 @@
 function Thermostat(temperature = 20) {
+  this.MIN_TEMPERATURE = 10;
+  this.MAX_ECO_TEMPERATURE = 25;
+  this.MAX_REGULAR_TEMPERATURE = 32;
   this.temperature = temperature;
   this.powerSavingMode = true;
 }
 
 Thermostat.prototype.up = function(temp) {
-  if(this.powerSavingMode && this.temperature + temp > 25) {
+  if(this.powerSavingMode && this.temperature + temp > this.MAX_ECO_TEMPERATURE) {
     throw Error("PSM - max temp exceeded")
-  }else if (this.temperature + temp >32 ) {
+  }else if (this.temperature + temp > this.MAX_REGULAR_TEMPERATURE ) {
     throw Error("Max temp exceeded")
   }
   this.temperature += temp;
 }
 
 Thermostat.prototype.down = function(temp) {
-  if(this.temperature - temp < 11) {
+  if(this.temperature - temp < this.MIN_TEMPERATURE) {
     throw Error("It is too cold!");
   };
   this.temperature -= temp;
@@ -39,3 +42,11 @@ Thermostat.prototype.energyUsage = function() {
     return "medium-usage";
   }
 }
+
+Thermostat.prototype.powerSavingModeString = function () {
+  if (this.powerSavingMode) {
+    return "on"
+  } else {
+    return "off"
+  };
+};
