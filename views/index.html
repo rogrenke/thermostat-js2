@@ -6,45 +6,41 @@
   <script src="jquery-3.2.1.js"></script>
   <script src="../src/Thermostat.js"></script>
   <script src="../src/jQueryInterface.js"></script>
-  <style media="screen">
-    #degrees {display: inline;}
-  </style>
-
+  <link rel="stylesheet" type="text/css" href="../CSS/thermostatStyle.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 </head>
 
 <body>
+  <div id="cityWeather">
+    <h3> Temperature in <span id="cityTemp"></span></h3>
+    <p>search for your city</p>
+    <form id="citySearch">
+      <input id="searchText" type="text" name="search" placeholder="Weather in...">
+      <input type="submit" name="submit" value="Search">
+    </form>
+  </div>
 
+  <div id="thermostat">
+    <div class="display">
+      <h1> Thermostat </h1>
+      <h1 ><span id="tempDisplay">Current Temperature</span> °C</h1>
+      <p id="powerSaving"> powerSavingMode On or Off</p>
+      <p id="EnergyUsage"> Current Energy Usage </p>
+    </div>
 
-  <h3>search for your city</h3>
-  <form id="citySearch">
-    <input id="searchText" type="text" name="search" placeholder="Search...">
-    <input type="submit" name="submit" value="Submit">
-  </form>
-  <h1> Temperature in <span id="cityTemp"></span></h1>
-  <h1> Thermostat </h1>
-  <h1 id="tempDisplay"> Current Temperature </h1><h1 id="degrees"> degrees C</h1>
-  <h3 id="powerSaving"> powerSavingMode On or Off</h3>
-  <h3 id="EnergyUsage"> Current Energy Usage </h3>
-    <form>
-    <input type="submit" id= "up" name="up" value="UP">
-    <br>
-    <input type="submit" id="down" name="down" value ="DOWN">
-    <br>
-    <input type="submit" id="psmon" name="psmon" value="Power Saving Mode on">
-    <br>
-    <input type="submit" id = "psmoff" name="psmoff" value="Power Saving Mode off">
-    <br>
-    <input type="submit" id="energyusage" name="displayenergyusage" value="Display energy usage">
-    <br>
-    <input type="submit" id="reset" name="reset" value="Reset">
-    <br>
-  </form>
-  <h4>The API respond:</h4>
-  <p id="api"> Test </p>
+      <form>
+      <input type="submit" id= "up" name="up" value="UP">
+      <input type="submit" id="down" name="down" value ="DOWN">
+      <input type="submit" id="psmon" name="psmon" value="Power Saving Mode on">
+      <input type="submit" id = "psmoff" name="psmoff" value="Power Saving Mode off">
+      <input type="submit" id="reset" name="reset" value="Reset">
+    </form>
+  </div>
 
-
-
-
+  <div class="switch">
+	   <input type="checkbox">
+	   <label></label>
+  </div>
 </body>
 </html>

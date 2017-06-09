@@ -1,4 +1,5 @@
 var thermostat = new Thermostat
+var cityPictureMapper = {london: "http://www.stgiles.com/wp-content/uploads/2016/02/londonA6.jpg", paris: "http://handluggageonly.co.uk/wp-content/uploads/2016/01/Paris-3.jpg", newyork: "https://www.city-journal.org/sites/cj/files/New-York.jpg", losangeles: "https://www.homeadvisor.com/images/consumer/hhi/hero-photos/city/LosAngeles.jpg", sanfrancisco: "http://www.sftravel.com/sites/sftraveldev.prod.acquia-sites.com/files/SanFrancisco_0.jpg"};
 
 var energyColorDisplay = function() {
   $( "#EnergyUsage" ).text("Energy Usage: " + thermostat.energyUsage());
@@ -11,29 +12,22 @@ var energyColorDisplay = function() {
   };
 };
 
+apiData1 = $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=01dcdbda41e274135f151befa25ccaf0');
 
 $( document ).ready(function() {
+
+  $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=01dcdbda41e274135f151befa25ccaf0', function(response) {
+    apiData2 = response;
+    $( "#cityTemp" ).text("London, " + (response.main.temp - 273.15).toFixed(0) + " °C");
+  });
 
   $( "#citySearch" ).submit(function(event) {
     event.preventDefault();
     console.log($("#searchText").val());
     searchTerm = $("#searchText").val();
-    url = "http://api.openweathermap.org/data/2.5/weather?q=" + searchTerm + "&APPID=01dcdbda41e274135f151befa25ccaf0";
-    $.get(url, function(response) {
-      $( "#cityTemp" ).text(searchTerm + "  " + (response.main.temp - 273.15).toFixed(2) + " °C");
-    });
+    displayWeather(searchTerm);
+    $("body").css({ "background": "url('http://handluggageonly.co.uk/wp-content/uploads/2016/01/Paris-3.jpg') no-repeat"});
   });
-
-  $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=01dcdbda41e274135f151befa25ccaf0', function(response) {
-    apiData2 = response;
-    $( "#cityTemp" ).text("London, " + (response.main.temp - 273.15).toFixed(2) + " °C");
-  });
-
-  // $("#citySearch").submit(function (){
-  //   console.log($('#citySearch :input'));
-  // });
-
-
 
   $( "#tempDisplay" ).text(thermostat.temperature);
   $( "#powerSaving" ).text("Power Saving: " + thermostat.powerSavingModeString());
@@ -76,6 +70,23 @@ $( document ).ready(function() {
     $( "#tempDisplay" ).text(thermostat.temperature)
     energyColorDisplay();
   });
+
+  function displayWeather(city) {
+    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city
+    var token = "&APPID=01dcdbda41e274135f151befa25ccaf0"
+    $.get(url + token, function(response) {
+      $( "#cityTemp" ).text(city + " " + (response.main.temp - 273.15).toFixed(0) + " °C");
+    });
+  };
+
+  function changeBackground(city) {
+    var normalizedString = city.toLowerCase().replace(" ", "");
+    if (typeof cityPictureMapper[normalizedString] === "string") {
+      return cityPictureMapper[normalizedString]
+    } else {
+      return "http://assets.worldwildlife.org/photos/13148/images/hero_full/17_292_Earth_Hour_Web_Images_1600x600_v4.jpg?1487079364";
+    };
+  };
 
 
 
