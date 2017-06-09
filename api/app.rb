@@ -3,6 +3,8 @@ require 'json'
 
 class Thermo_API < Sinatra::Base
 
+  enable :sessions
+
   get "/users/1" do
     headers "Access-Control-Allow-Origin" => "*"
     json_hash = { current_temp: 18, power_saving: true, current_city: "Stockholm" }
@@ -11,8 +13,9 @@ class Thermo_API < Sinatra::Base
 
   post "/users/" do
     headers "Access-Control-Allow-Origin" => "*"
-    print params.class
-    # @user_data = JSON.parse(params)
+    session[:current_temp] = params["current_temp"]
+    session[:power_saving] = params["power_saving"]
+    session[:current_city] = params["current_city"]
   end
 
 
