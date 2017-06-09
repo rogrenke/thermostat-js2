@@ -16,6 +16,10 @@ apiData1 = $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=
 
 $( document ).ready(function() {
 
+  var loadTemp;
+  var loadPowerSaving;
+  var loadCity;
+
   $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=01dcdbda41e274135f151befa25ccaf0', function(response) {
     apiData2 = response;
     $( "#cityTemp" ).text("London, " + (response.main.temp - 273.15).toFixed(0) + " °C");
@@ -23,8 +27,13 @@ $( document ).ready(function() {
 
   $( "#load" ).click(function(event){
     event.preventDefault()
-    $.get("http://localhost:4567/users/1", function(data){
-      console.log(data)
+    $.getJSON("http://localhost:4567/users/1", function(data){
+      thermostat.temperature = data.current_temp;
+      loadCity = data.current_city;
+      thermostat.powerSavingMode = data.power_saving;
+      displayWeather(loadCity);
+      $( "#tempDisplay" ).text(thermostat.temperature);
+      $( "#powerSaving" ).text("Power Saving: " + thermostat.powerSavingModeString());
     });
   });
 

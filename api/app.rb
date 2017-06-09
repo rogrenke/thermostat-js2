@@ -5,7 +5,7 @@ class Thermo_API < Sinatra::Base
 
   get "/users/1" do
     headers "Access-Control-Allow-Origin" => "*"
-    json_hash = { curent_temp: "18", power_saving: "on", current_city: "Stockholm" }
+    json_hash = { current_temp: 18, power_saving: true, current_city: "Stockholm" }
     json_hash.to_json
   end
 
