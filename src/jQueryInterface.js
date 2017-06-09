@@ -1,5 +1,5 @@
 var thermostat = new Thermostat
-
+var test;
 
 var energyColorDisplay = function() {
   $( "#EnergyUsage" ).text("Energy Usage: " + thermostat.energyUsage());
@@ -27,12 +27,15 @@ $( document ).ready(function() {
   $( "#load" ).click(function(event){
     event.preventDefault()
     $.getJSON("http://localhost:4567/users/1", function(data){
+      test = data;
       thermostat.temperature = data.current_temp;
       currentCity = data.current_city;
       thermostat.powerSavingMode = data.power_saving;
-      displayWeather(loadCity);
+      displayWeather(currentCity);
       $( "#tempDisplay" ).text(thermostat.temperature);
       $( "#powerSaving" ).text("Power Saving: " + thermostat.powerSavingModeString());
+      var url = "url('" + changeBackground(currentCity) + "') no-repeat"
+      $("body").css({ "background": url, "background-size": "cover"});
     });
   });
 
@@ -45,7 +48,7 @@ $( document ).ready(function() {
 
   $( "#citySearch" ).submit(function(event) {
     event.preventDefault();
-    var currentCity = $("#searchText").val();
+    currentCity = $("#searchText").val();
     displayWeather(currentCity);
     var url = "url('" + changeBackground(currentCity) + "') no-repeat"
     $("body").css({ "background": url, "background-size": "cover"});
