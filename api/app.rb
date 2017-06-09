@@ -9,6 +9,12 @@ class Thermo_API < Sinatra::Base
     json_hash.to_json
   end
 
+  post "/users/" do
+    headers "Access-Control-Allow-Origin" => "*"
+    print params.class
+    # @user_data = JSON.parse(params)
+  end
+
 
   run! if app_file == $0
 

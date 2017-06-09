@@ -39,7 +39,7 @@ $( document ).ready(function() {
   $( "#save" ).click(function(event){
     event.preventDefault()
     jsonToPost = { current_temp: thermostat.temperature, power_saving: thermostat.powerSavingMode, current_city: currentCity };
-    console.log(jsonToPost);
+    $.post("http://localhost:4567/users/", jsonToPost);
   });
 
 
