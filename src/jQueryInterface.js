@@ -16,9 +16,8 @@ apiData1 = $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=
 
 $( document ).ready(function() {
 
-  var loadTemp;
-  var loadPowerSaving;
-  var loadCity;
+  var currentCity = "london";
+  var jsonToPost;
 
   $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=01dcdbda41e274135f151befa25ccaf0', function(response) {
     apiData2 = response;
@@ -29,7 +28,7 @@ $( document ).ready(function() {
     event.preventDefault()
     $.getJSON("http://localhost:4567/users/1", function(data){
       thermostat.temperature = data.current_temp;
-      loadCity = data.current_city;
+      currentCity = data.current_city;
       thermostat.powerSavingMode = data.power_saving;
       displayWeather(loadCity);
       $( "#tempDisplay" ).text(thermostat.temperature);
@@ -37,11 +36,17 @@ $( document ).ready(function() {
     });
   });
 
+  $( "#save" ).click(function(event){
+    event.preventDefault()
+    jsonToPost = { current_temp: thermostat.temperature, power_saving: thermostat.powerSavingMode, current_city: currentCity };
+    console.log(jsonToPost);
+  });
+
+
   $( "#citySearch" ).submit(function(event) {
     event.preventDefault();
-    console.log($("#searchText").val());
-    searchTerm = $("#searchText").val();
-    displayWeather(searchTerm);
+    currentCity = $("#searchText").val();
+    displayWeather(currentCity);
     $("body").css({ "background": "url('http://handluggageonly.co.uk/wp-content/uploads/2016/01/Paris-3.jpg') no-repeat"});
   });
 
