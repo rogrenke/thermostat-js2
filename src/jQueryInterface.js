@@ -21,6 +21,13 @@ $( document ).ready(function() {
     $( "#cityTemp" ).text("London, " + (response.main.temp - 273.15).toFixed(0) + " °C");
   });
 
+  $( "#load" ).click(function(event){
+    event.preventDefault()
+    $.get("http://localhost:4567/users/1", function(data){
+      console.log(data)
+    });
+  });
+
   $( "#citySearch" ).submit(function(event) {
     event.preventDefault();
     console.log($("#searchText").val());
@@ -70,6 +77,7 @@ $( document ).ready(function() {
     $( "#tempDisplay" ).text(thermostat.temperature)
     energyColorDisplay();
   });
+
 
   function displayWeather(city) {
     var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city
