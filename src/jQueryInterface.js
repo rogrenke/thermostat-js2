@@ -1,5 +1,5 @@
 var thermostat = new Thermostat
-var cityPictureMapper = {london: "http://www.stgiles.com/wp-content/uploads/2016/02/londonA6.jpg", paris: "http://handluggageonly.co.uk/wp-content/uploads/2016/01/Paris-3.jpg", newyork: "https://www.city-journal.org/sites/cj/files/New-York.jpg", losangeles: "https://www.homeadvisor.com/images/consumer/hhi/hero-photos/city/LosAngeles.jpg", sanfrancisco: "http://www.sftravel.com/sites/sftraveldev.prod.acquia-sites.com/files/SanFrancisco_0.jpg"};
+
 
 var energyColorDisplay = function() {
   $( "#EnergyUsage" ).text("Energy Usage: " + thermostat.energyUsage());
@@ -45,9 +45,10 @@ $( document ).ready(function() {
 
   $( "#citySearch" ).submit(function(event) {
     event.preventDefault();
-    currentCity = $("#searchText").val();
+    var currentCity = $("#searchText").val();
     displayWeather(currentCity);
-    $("body").css({ "background": "url('http://handluggageonly.co.uk/wp-content/uploads/2016/01/Paris-3.jpg') no-repeat"});
+    var url = "url('" + changeBackground(currentCity) + "') no-repeat"
+    $("body").css({ "background": url, "background-size": "cover"});
   });
 
   $( "#tempDisplay" ).text(thermostat.temperature);
@@ -106,10 +107,24 @@ $( document ).ready(function() {
     if (typeof cityPictureMapper[normalizedString] === "string") {
       return cityPictureMapper[normalizedString]
     } else {
-      return "http://assets.worldwildlife.org/photos/13148/images/hero_full/17_292_Earth_Hour_Web_Images_1600x600_v4.jpg?1487079364";
+      return "https://userscontent2.emaze.com/images/9ad354ea-2ea0-4012-8193-51d7faf0a74d/50fd40af-ea5b-4aa0-baba-58d6b38ddc09.jpg";
     };
   };
 
-
-
 });
+
+var cityPictureMapper = {
+  london: "http://www.stgiles.com/wp-content/uploads/2016/02/londonA6.jpg",
+  paris: "http://handluggageonly.co.uk/wp-content/uploads/2016/01/Paris-3.jpg",
+  newyork: "https://www.city-journal.org/sites/cj/files/New-York.jpg",
+  losangeles: "https://www.homeadvisor.com/images/consumer/hhi/hero-photos/city/LosAngeles.jpg",
+  sanfrancisco: "http://www.sftravel.com/sites/sftraveldev.prod.acquia-sites.com/files/SanFrancisco_0.jpg",
+  stockholm: "http://static.thousandwonders.net/Stockholm.original.14849.jpg",
+  berlin: "https://www.emnify.com/wp-content/uploads/2015/11/Blog-Berlin-move.jpg",
+  rome: "https://www.thetimes.co.uk/travel/s3/growthtravel-prod/uploads/2016/04/Rome-on-a-budget.jpg",
+  dubai: "http://images.kuoni.co.uk/73/dubai-37075265-1494255242-ImageGalleryLightboxLarge.jpg0",
+  sydney: "http://www.australia.com/content/australia/de_de/places/sydney/_jcr_content/hero/image.adapt.1663.medium.jpg",
+  shanghai: "http://tilomitra.com/wp-content/uploads/2015/01/Shanghai.jpg",
+  hongkong: "https://www.whitecase.com/sites/whitecase/files/images/locations/HongKong_Tablet_1920x960.jpg",
+  singapore: "https://absoluteinternship.com/wp-content/uploads/abs-singapore-program-hdr.jpg"
+};
